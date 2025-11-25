@@ -78,7 +78,9 @@ public class NodeServerHandler implements Runnable {
     private void initActionMap() {
         actionMap.put(NodePacketType.MESSAGE, this::handleMessage);
         actionMap.put(NodePacketType.KEEP_ALIVE, this::handleKeepAlive);
+        actionMap.put(NodePacketType.SIGNATURE_REQUEST, this::handleSignatureRequest);
     }
+
 
     private void generatePacketResponse(NodePacket serverPacket) {
         // Allow for the packet response to be created based on the handling response
@@ -120,8 +122,16 @@ public class NodeServerHandler implements Runnable {
 
         return null;
     }
+       // NEW METHOD: Handle the incoming Signature Request
+    private Void handleSignatureRequest(NodePacket serverPacket) {
+        // Instantiate the specific handler for signature requests (Node B's logic)
+        // Note: NodeSignatureRequestHandler is correctly listed as a sibling file in the screenshot
+        packetHandler = new NodeSignatureRequestHandler();
 
-    private Void handleKeepAlive(NodePacket serverPacket) {
+        return null;
+    }
+   
+   private Void handleKeepAlive(NodePacket serverPacket) {
         // Create the packetType based handler
         packetHandler = new NodeKeepAliveHandler();
 

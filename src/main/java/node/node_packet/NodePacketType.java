@@ -23,4 +23,7 @@ public enum NodePacketType {
     ERROR,            // Error or exception reporting
     ACK,              // Acknowledgement of receipt
     DISCONNECT        // Graceful disconnect notice
+// New PGP Peer-to-Peer Packet Types
+    SIGNATURE_REQUEST,  // Request a peer's signed credential
+    SIGNED_CREDENTIAL   // Response containing the signed credential and public key
 }
